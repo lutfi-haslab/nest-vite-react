@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>App</title>
+  <script defer src="./public/vendor/alpinejs/cdn.min.js"></script>
+</head>
+
+<body>
+  {{ message }}
+  test guys
+  <div x-data="test">
+    <h1 x-text="title"></h1>
+  </div>
+  <div x-data="test2">
+    <h1 x-text="title"></h1>
+  </div>
+  <div x-data="{ open: false }">
+    <button @click="open = ! open">Expand</button>
+
+    <div x-show="open">
+      Content...
+    </div>
+    <script>
+      var person = "{{ message }}";
+      console.log(person);
+      document.addEventListener('alpine:init', () =>
+      {
+        Alpine.data('test', () => ({
+          title: person
+        }));
+        Alpine.data('test2', () => ({
+          title: "{{ message }}"
+        }));
+      })
+    </script>
+  </div>
+</body>
+
+</html>
